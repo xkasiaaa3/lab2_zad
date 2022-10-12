@@ -66,6 +66,12 @@ const Section = ({children, title}): Node => {
     return("imię: " +user.name+"\nnazwisko: " +user.surname +"\nśrednia: "+ wynik/licznik);
   }
 
+  function znajdz_waga(user,waga){
+    const marks = user.allGrades;
+    let x = _.find(marks, mark => {return mark.weight === waga})
+    return x.subjectName;
+  }
+
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -78,6 +84,7 @@ const Section = ({children, title}): Node => {
         {title}
       </Text>
       <Text>{sr_wazona(user)}</Text>
+      <Text>{znajdz_waga(user,1)}</Text>
     </View>
   );
 };
