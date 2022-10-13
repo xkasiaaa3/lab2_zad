@@ -32,6 +32,30 @@ const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   const _ = require('lodash');
 
+    const collections = [
+        {},
+        15,
+        "hello@test.pl",
+        null,
+        ['aaa', 'bbb', 5],
+        'admin@gmail.com',
+        undefined,
+        'a34@yahoo.com',
+        '321@a',
+        '321.pl'
+    ];
+
+    function getMails(tab){
+        let mails =
+            _.filter(tab, isMail);
+        mails.sort();
+        return mails;
+    }
+
+    function isMail(v) {
+        return (/^[\w]+[@]{1}[\w]+[.]{1}[a-z]+$/i.test(v))
+    }
+
   const user={
     name:'Imie',
     surname: 'Nazwisko',
@@ -83,8 +107,13 @@ const Section = ({children, title}): Node => {
         ]}>
         {title}
       </Text>
+
+        <Text>średnia ważona:</Text>
       <Text>{sr_wazona(user)}</Text>
+        <Text>Przedmiot z wagą 1:</Text>
       <Text>{znajdz_waga(user,1)}</Text>
+        <Text>Wynik getMails(collections):</Text>
+        <Text>{getMails(collections).toString()}</Text>
     </View>
   );
 };
